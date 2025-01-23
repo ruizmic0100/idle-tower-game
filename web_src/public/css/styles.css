@@ -1,0 +1,104 @@
+/* Top Center Zone for Game Visuals */
+
+title {
+	align-items: center;
+}
+
+.game-zone {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 95%;
+	height: 400px;
+}
+
+.game-zone img {
+	max-width: 45%
+	max-height: 300px;
+	object-fit: contain;
+}
+
+.tower-container {
+	position: relative;
+	margin-right: 50px;
+	margin-left: 50px;
+}
+
+.enemy-container {
+	position: relative;
+	margin-right: 50px;
+	margin-left: 50px
+}
+
+.enemy-health-container {
+	position: relative;
+	width: 50%;
+	top: 10em;
+	left: 7em;
+	height: 10px;
+	background-color: #ddd; /* Semi-transparent background */
+	color: white;
+	padding: 5px 10px;
+	border-radius: 12px;
+	font-size: 16px;
+	font-weight: bold;
+	z-index: 10; /* To ensure it appears above the enemy's zone */
+	overflow: hidden;
+}
+
+.enemy-health-bar {
+	width: 100%;
+	height: 100%;
+	background-color: green;
+	transition: width 0.3 ease, background-color 0.3s ease;
+}
+
+.enemy-health-text {
+	position: absolute;
+	bottom: 52px;
+	right: -12px;
+	font-size: 15px;
+	color: #333;
+}
+
+/* Bottom Zone for Controls */
+hr {
+	border: none;
+	border-top: 4px solid black;
+	margin: 20px 0;
+}
+
+.control-zone {
+	height: 25vh;
+	background-color: #333;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+}
+
+.control-buttoms {
+	display: flex;
+	gap: 10px;
+}
+
+.control-buttons button {
+	padding: 10px 20px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.control-buttons button:hover {
+	background-color: #45a049
+}
+
+.status-display {
+	margin-top: 10px;
+	display: flex;
+	gap: 20px;
+}
