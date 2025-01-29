@@ -23,67 +23,17 @@ def communicate_with_cpp(command)
 end
 
 # Creating a new WEBrick HTTP server
-server = WEBrick::HTTPServer.new(Port: port, DocumentRoot: './public')
+server = WEBrick::HTTPServer.new(Port: port, DocumentRoot: File.join(Dir.pwd, 'public'))
 
-# Create routes
+# Mount handler for the main page
 server.mount_proc '/' do |req, res|
-	res.body = <<-HTML
-		<!DOCTYPE html>
-		<html>
-		<head>
-			<title>Idle Tower Defense</title>
-		</head>
-		<body>
-			<h1>Idle Tower Defense</h1>
-			<button onclick="sendCommand('upgrade attackspeed')">Upgrade AttackSpeed</button>
-			<button onclick="sendCommand('upgrade power')">Upgrade Power</button>
-			<button onclick="sendCommand('upgrade gold')">Upgrade Gold</button>
-			<div id="response"></div>
-			<script>
-				function fetchandDisplayData() {
-					fetch('/command', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({ command: 'getData' })	
-					})
-						.then(response => response.json())
-						.then(data => {
-							document.getElementById('towerstats').innerText = 'Tower Stats: ' + data.towerStats;
-							document.getElementById('enemyname').innerText = data.enemyName;
-							document.getElementById('enemystats').innerText = 'Enemy Stats: ' + data.enemyStats;
-						})
-						.catch(error => console.error('Error:', error));
-				}
-
-
-				// Fetch and Display data every 1 second
-				setInterval(fetchandDisplayData, 60);
-
-			</script>
-			<script>
-				function sendCommand(command) {
-					fetch('/command', {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({ command: command })
-					})
-					.then(response => response.json())
-					.then(data => {
-						document.getElementById('response').innerText = 'Response: ' + data.message;
-					})
-					.catch(error => console.error('Error:', error));
-				}
-
-			
-			</script>
-			<div id="towerstats"></div>
-			<div id="enemyname"></div>
-			<div id="enemystats"></div>
-		</body>
-		</html>
-	HTML
+	# Read the main html file
+	content = File.read(File.join(Dir.pwd, 'views', 'index.html'))
+	res.body = content
 	res['Content-Type'] = 'text/html'
 end
+
+server.mount('/public', WEBrick::HTTPServlet::FileHandler, 'public')
 
 # Handle POST requests from the webpage
 server.mount_proc '/command' do |req, res|
