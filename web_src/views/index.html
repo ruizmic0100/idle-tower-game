@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Idle Tower Defense</title>
+
+	<link rel="stylesheet" href="/public/css/styles.css">
+</head>
+<body>
+	<h1>Idle Tower Defense</h1>
+	<!-- Top Center Zone for Game Visuals -->
+	<div class="game-zone">
+		<div class="tower-container">
+			<img id="player-tower" src="/public/images/player-tower.png" alt="Player Tower">
+		</div>
+		<div class="enemy-container">
+			<!-- enemy health bar -->
+			<div class="enemy-health-container">
+				<div class="enemy-health-bar" id="enemy-health-bar"></div>
+			</div>
+				
+			<div class="enemy-health-text" id="enemy-health-text">100HP</div>
+			<img id="enemy-tower" src="/public/images/enemy-tower.png" alt="Enemy Tower">
+
+		</div>
+	</div>
+
+	<!-- Bottom Zone for Controls -->
+	<hr>
+	<div class="control-zone">
+		<div class="control-buttons">
+			<button id="upgrade-attackspeed">Upgrade AttackSpeed</button>
+			<button id="upgrade-power">Upgrade Power</button>
+			<button id="upgrade-gold">Upgrade Gold</button>
+		</div>
+		<div class="status-display">
+			<div id="player-gold-text">Gold: </div>
+			<div id="player-gold-val"></div>
+			<div id="tower-goldpersecond-text">Gold per Second: </div>
+			<div id="tower-goldpersecond-val"></div>
+			<div id="tower-power-text">Power: </div>
+			<div id="tower-power-val"></div>
+			<div id="tower-attackspeed-text">Attack Speed: </div>
+			<div id="tower-attackspeed-val"></div>
+			<div id="enemies-defeated-text">Enemies Defeated: </div>
+			<div id="enemies-defeated-val"></div>
+			<div id="wave-number-text">Wave: </div>
+			<div id="wave-number-val"></div>
+		</div>
+	</div>
+	
+
+	<!-- Loading scripts -->
+	<script src="/public/js/utils.js"></script>
+	<script src="/public/js/game.js"></script>
+	<script src="/public/js/enemy-health.js"></script>
+
+
+	<!-- This is for debugging -->
+	<div id="response"></div>
+</body>
+</html>
